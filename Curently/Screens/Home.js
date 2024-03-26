@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { ref, onValue } from 'firebase/database';
 import database from '../firebaseConfig';
-import Speedometer from 'react-native-speedometer-chart';
+import Navbar from './Navbar';
 
 const HomeScreen = () => {
     const [currentValue, setCurrentValue] = useState('');
@@ -26,14 +26,19 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.valueContainer}>
-                <Text style={styles.label}>Current Value:</Text>
-                <Text style={styles.value}>{currentValue}</Text>
+            <Navbar />
+
+            <View style={styles.imageContainer}>
+                <Image
+                    source={require('../assets/home.png')} // Provide the path to your image
+                    style={styles.image}
+                    resizeMode="contain" // Adjust the resizeMode as needed
+                />
             </View>
-            <View style={styles.valueContainer}>
-                <Text style={styles.label}>Power Value:</Text>
-                <Text style={styles.value}>{powerValue}</Text>
-            </View>
+
+            <Text style={styles.text}>Energy Consumption Today</Text>
+            <Text style={styles.currenttext}>{currentValue} kWh</Text>
+
         </View>
     );
 };
@@ -41,21 +46,26 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#f5f5f5',
     },
-    valueContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 10,
+    text: {
+        textAlign: 'center',
+        fontSize: 18,
+        fontWeight: '400',
     },
-    label: {
+    currenttext: {
+        margin: 10,
+        textAlign: 'center',
+        fontSize: 20,
         fontWeight: 'bold',
-        marginRight: 10,
     },
-    value: {
-        fontSize: 16,
+    imageContainer: {
+        height: 200,
+    },
+
+    image: {
+        flex: 1,
+        width: '100%',
+        height: 'auto',
     },
 });
 
