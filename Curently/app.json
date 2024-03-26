@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Curently",
-    "slug": "Curently",
+    "slug": "curently",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.curently.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "08e14bf7-ac58-4f4c-896a-88cfa4e84b77"
+      }
+    },
+    "owner": "kiran07x"
   }
 }

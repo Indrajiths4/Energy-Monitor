@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, View, Text } from 'react-native';
+import { ref, onValue } from 'firebase/database';
+import database from './firebaseConfig';
+
+const UserData = () => {
+  const [currentValue, setCurrentValue] = useState('');
+  const [powerValue, setPowerValue] = useState('');
+
+  useEffect(() => {
+    const userDataRef = ref(database, '/UsersData/OUP0gXmVjCcD4p3NJNaudwQs7Er1');
+
+    const unsubscribe = onValue(userDataRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        setCurrentValue(data.current);
+        setPowerValue(data.power);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{ "flex": 1, "justifyContent": 'center', "alignItems": "center" }}>
+      <Text>Current Value: {currentValue}</Text>
+      <Text>Power Value: {powerValue}</Text>
+    </SafeAreaView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default UserData;
