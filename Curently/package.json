@@ -10,6 +10,11 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.1.3",
+<<<<<<< HEAD
+=======
+    "@react-navigation/native": "^6.1.17",
+    "@react-navigation/stack": "^6.3.29",
+>>>>>>> d98219d389cd73c57d440c069e13574fac5e26b7
     "expo": "~50.0.14",
     "expo-firebase": "^0.0.0-alpha.0",
     "expo-linear-gradient": "^12.7.2",
@@ -19,8 +24,12 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.73.6",
+<<<<<<< HEAD
     "react-native-linear-gradient": "^2.8.3",
     "react-native-linear-gradient-text": "^1.2.8",
+=======
+    "react-native-gesture-handler": "^2.16.0",
+>>>>>>> d98219d389cd73c57d440c069e13574fac5e26b7
     "react-native-web": "~0.19.6"
   },
   "devDependencies": {
