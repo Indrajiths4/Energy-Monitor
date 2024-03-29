@@ -11,20 +11,20 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
-  const [signup,SetSignup] = useState(false)
+  const [signup, setSignup] = useState(false)
   const handleLogin = () => {
-  signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    navigation.navigate('Home');
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
-    
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        navigation.navigate('Home');
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+
   };
   const handleSignup = () => {
 
@@ -36,7 +36,7 @@ const Login = () => {
       <Text style={styles.title}>Login</Text>
       <View style={styles.inputView}>
         <TextInput
-          
+
           style={styles.input}
           placeholder='EMAIL'
           value={email}
@@ -46,7 +46,7 @@ const Login = () => {
           placeholderTextColor='black'
         />
         <TextInput
-          
+
           style={styles.input}
           placeholder='PASSWORD'
           secureTextEntry
@@ -59,20 +59,26 @@ const Login = () => {
       </View>
       <View style={styles.buttonView}>
 
-        {signup ? <Pressable 
+        {signup ? <Pressable
           style={[styles.button, { backgroundColor: 'black' }]}
           onPress={handleSignup}
         >
           <Text style={[styles.buttonText, { color: 'white' }]} >Sign up</Text>
-        </Pressable> : <Pressable 
+        </Pressable> : <Pressable
           style={[styles.button, { backgroundColor: 'black' }]}
           onPress={handleLogin}
         >
           <Text style={[styles.buttonText, { color: 'white' }]} >LOGIN</Text>
         </Pressable>}
-        
+
       </View>
-      <Text style={styles.footerText}>Don't Have Account?<Text style={styles.signup} onClick={SetSignup(true)}> Sign Up</Text></Text>
+      <Pressable onPress={() => setSignup(!signup)}>
+        <Text style={styles.footerText}>
+          {signup ? "Already Have an Account?" : "Don't Have Account?"}
+          <Text style={styles.signup}> {signup ? "Log In" : "Sign Up"}</Text>
+        </Text>
+      </Pressable>
+
     </SafeAreaView>
   );
 };
