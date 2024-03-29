@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { ref, onValue } from 'firebase/database';
 import database from '../firebaseConfig';
-import Speedometer from 'react-native-speedometer-chart';
+// import Speedometer from 'react-native-speedometer-chart';
 
 const HomeScreen = () => {
     const [currentValue, setCurrentValue] = useState('');
