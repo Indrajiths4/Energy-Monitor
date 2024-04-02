@@ -36,8 +36,8 @@ const HomeScreen = () => {
                 />
             </View>
 
-            <Text style={styles.text}>Energy Consumption Today</Text>
-            <Text style={styles.currenttext}>{currentValue} kWh</Text>
+            <Text style={styles.text}>Current Consumption:</Text>
+            <Text style={styles.currenttext}>{currentValue} A</Text>
 
         </View>
     );
@@ -46,6 +46,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: 'white',
     },
     text: {
         textAlign: 'center',
