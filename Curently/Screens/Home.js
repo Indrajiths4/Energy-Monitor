@@ -3,11 +3,12 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { ref, onValue } from 'firebase/database';
 import database from '../firebaseConfig';
 import Navbar from './Navbar';
+import { LineChart } from 'react-native-svg-charts';
 
 const HomeScreen = () => {
     const [currentValue, setCurrentValue] = useState('');
     const [powerValue, setPowerValue] = useState('');
-
+    const [newdata, setNewData] = useState([]);
     useEffect(() => {
         const userDataRef = ref(database, '/UsersData/OUP0gXmVjCcD4p3NJNaudwQs7Er1');
 
@@ -16,6 +17,9 @@ const HomeScreen = () => {
             if (data) {
                 setCurrentValue(data.current);
                 setPowerValue(data.power);
+                let newDataValue = data.current <= 0.28 ? 0 : data.current;
+                setNewData(prevData => [...prevData, newDataValue]);
+                console.log(newDataValue)
             }
         });
 
@@ -23,7 +27,7 @@ const HomeScreen = () => {
             unsubscribe();
         };
     }, []);
-
+    
     return (
         <View style={styles.container}>
             <Navbar />
@@ -38,7 +42,14 @@ const HomeScreen = () => {
 
             <Text style={styles.text}>Current Consumption:</Text>
             <Text style={styles.currenttext}>{currentValue} A</Text>
-
+            <View style={{}}>
+                <LineChart
+                    style={{ width: 300, height: 200 }}
+                    data={newdata}
+                    svg={{ stroke: 'rgb(134, 65, 244)' }}
+                    contentInset={{ top: 20, bottom: 20 }}
+                />
+            </View>
         </View>
     );
 };

@@ -25,6 +25,8 @@
     "react-native-gesture-handler": "^2.14.0",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-linear-gradient-text": "^1.2.8",
+    "react-native-svg": "^15.1.0",
+    "react-native-svg-charts": "^5.4.0",
     "react-native-web": "~0.19.6"
   },
   "devDependencies": {

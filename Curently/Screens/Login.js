@@ -25,7 +25,7 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
-
+      navigation.navigate('Home');
   };
   const handleSignup = () => {
     createUserWithEmailAndPassword(auth, email, password)

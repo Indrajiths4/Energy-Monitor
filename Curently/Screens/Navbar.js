@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // Assuming you're using Expo Icons
-import LinearGradientText from 'react-native-linear-gradient-text';
 
 
 const Navbar = ({ onBackPress, onMenuPress }) => {
@@ -45,10 +44,11 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         paddingVertical: 4,
         paddingHorizontal: 8,
+        
     },
 
     title: {
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: 'bold',
         textAlign: 'center',
         color: 'black'
