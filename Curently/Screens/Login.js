@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 const logo = require("../assets/Curently_transparent.png");
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword } from "firebase/auth";
+
 
 
 const Login = () => {
@@ -27,13 +28,26 @@ const Login = () => {
 
   };
   const handleSignup = () => {
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    alert('Created User')
+    setSignup(!signup)
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
 
   }
 
   return (
     <SafeAreaView style={styles.container}>
       <Image source={logo} style={styles.image} resizeMode='contain' />
-      <Text style={styles.title}>Login</Text>
+      {signup ? <Text style={styles.title}>Sign up</Text> : <Text style={styles.title}>Login</Text> }
       <View style={styles.inputView}>
         <TextInput
 
