@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-const logo = require("../assets/Curently_transparent.png");
+const logo = require("../assets/Group 2666.png");
 import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword } from "firebase/auth";
-
-
+import LinearGradient from 'react-native-linear-gradient';
 
 const Login = () => {
   const auth = getAuth();
@@ -57,7 +56,7 @@ const Login = () => {
           onChangeText={setEmail}
           autoCorrect={false}
           autoCapitalize='none'
-          placeholderTextColor='black'
+          placeholderTextColor='#FF1084'
         />
         <TextInput
 
@@ -68,7 +67,7 @@ const Login = () => {
           onChangeText={setPassword}
           autoCorrect={false}
           autoCapitalize='none'
-          placeholderTextColor='black'
+          placeholderTextColor='#FF1084'
         />
       </View>
       <View style={styles.buttonView}>
@@ -79,7 +78,7 @@ const Login = () => {
         >
           <Text style={[styles.buttonText, { color: 'white' }]} >Sign up</Text>
         </Pressable> : <Pressable
-          style={[styles.button, { backgroundColor: 'black' }]}
+          style={[styles.button, { backgroundColor: '#FF5767' }]}
           onPress={handleLogin}
         >
           <Text style={[styles.buttonText, { color: 'white' }]} >LOGIN</Text>
@@ -100,13 +99,13 @@ const Login = () => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    paddingTop: 70,
+    paddingTop: 150,
     backgroundColor: "white",
     flex: 1
   },
   image: {
-    height: 160,
-    width: 170
+    height: 80,
+    width: 80
   },
   title: {
     fontSize: 30,
@@ -125,7 +124,7 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     paddingHorizontal: 20,
-    borderColor: "black",
+    borderColor: "#FF2E78",
     borderWidth: 1,
     borderRadius: 7,
     color: 'black'
@@ -140,7 +139,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 45,
-    borderColor: "black",
+    borderColor: "#FF2E78",
     borderWidth: 1,
     borderRadius: 5,
     alignItems: "center",
