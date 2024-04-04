@@ -5,8 +5,9 @@ import { View, Dimensions, StyleSheet } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 
 const Chart = () => {
-    const [powerValue, setPowerValue] = useState('');
-    const [newdata, setNewData] = useState([2, 3, 2, 3]);
+    const [newdata, setNewData] = useState([]);
+    const [timestamps, setTimestamps] = useState([]);
+    const [latestTime, setLatestTime] = useState('');
 
     useEffect(() => {
         const userDataRef = ref(database, '/UsersData/OUP0gXmVjCcD4p3NJNaudwQs7Er1');
@@ -22,6 +23,17 @@ const Chart = () => {
                     }
                     return newData;
                 });
+
+                // Update timestamps
+                const currentTime = new Date().toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true
+                });
+                setTimestamps((prevTimestamps) => [...prevTimestamps, currentTime]);
+
+                // Update latest time
+                setLatestTime(currentTime);
             }
         });
 
@@ -30,14 +42,12 @@ const Chart = () => {
         };
     }, []);
 
-
-
     return (
         <View style={styles.container}>
             <View style={styles.chartCard}>
                 <LineChart
                     data={{
-                        labels: ["Jan", "Feb", "Mar", "Apr"],
+                        labels: [...timestamps, latestTime],
                         datasets: [
                             {
                                 data: newdata,
@@ -86,16 +96,14 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width - 40,
         backgroundColor: '#FFF',
         borderRadius: 16,
-
-
-        shadowColor: 'rgba(255, 0, 0, 0.3)', // Adjust the shadow color here
+        shadowColor: 'rgba(255, 0, 0, 0.3)',
         shadowOffset: {
             width: 4,
             height: 4,
         },
         shadowOpacity: 0.5,
         shadowRadius: 4,
-        elevation: 6, // Add elevation on Android
+        elevation: 6,
     },
 });
 
