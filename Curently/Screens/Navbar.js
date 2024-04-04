@@ -8,9 +8,7 @@ const Navbar = ({ onBackPress, onMenuPress }) => {
         <SafeAreaView style={styles.safeArea}>
             <View style={styles.container}>
                 {/* Back Button */}
-                <TouchableOpacity onPress={onBackPress} style={styles.button}>
-                    <Ionicons name="arrow-back" size={24} color="black" />
-                </TouchableOpacity>
+
 
                 {/* App Title */}
                 <View style={styles.titleContainer}>
@@ -44,12 +42,13 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         paddingVertical: 4,
         paddingHorizontal: 8,
-        
+
     },
 
     title: {
         fontSize: 22,
         fontWeight: 'bold',
+        marginTop: 5,
         textAlign: 'center',
         color: 'black'
     },
