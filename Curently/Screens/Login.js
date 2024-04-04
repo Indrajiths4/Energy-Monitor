@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 const logo = require("../assets/Group 2666.png");
-import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 const Login = () => {
@@ -25,89 +26,101 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
-      navigation.navigate('Home');
+    navigation.navigate('Home');
   };
   const handleSignup = () => {
     createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    alert('Created User')
-    setSignup(!signup)
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        alert('Created User')
+        setSignup(!signup)
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
 
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Image source={logo} style={styles.image} resizeMode='contain' />
-      {signup ? <Text style={styles.title}>Sign up</Text> : <Text style={styles.title}>Login</Text> }
-      <View style={styles.inputView}>
-        <TextInput
+    <LinearGradient colors={['#FFA448', '#FF0488']} style={styles.container}>
+      <SafeAreaView style={styles.container}>
 
-          style={styles.input}
-          placeholder='EMAIL'
-          value={email}
-          onChangeText={setEmail}
-          autoCorrect={false}
-          autoCapitalize='none'
-          placeholderTextColor='#FF1084'
-        />
-        <TextInput
 
-          style={styles.input}
-          placeholder='PASSWORD'
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-          autoCorrect={false}
-          autoCapitalize='none'
-          placeholderTextColor='#FF1084'
-        />
-      </View>
-      <View style={styles.buttonView}>
+        {signup ? <Text style={styles.title}>Sign up</Text> : <Text style={styles.title}>Login</Text>}
+        <View style={styles.inputView}>
+          <TextInput
 
-        {signup ? <Pressable
-          style={[styles.button, { backgroundColor: 'black' }]}
-          onPress={handleSignup}
-        >
-          <Text style={[styles.buttonText, { color: 'white' }]} >Sign up</Text>
-        </Pressable> : <Pressable
-          style={[styles.button, { backgroundColor: 'black' }]}
-          onPress={handleLogin}
-        >
-          <Text style={[styles.buttonText, { color: 'white' }]} >LOGIN</Text>
-        </Pressable>}
+            style={styles.input}
+            placeholder='EMAIL'
+            value={email}
+            onChangeText={setEmail}
+            autoCorrect={false}
+            autoCapitalize='none'
+            placeholderTextColor='#FF1084'
+          />
+          <TextInput
 
-      </View>
-      <Pressable onPress={() => setSignup(!signup)}>
-        <Text style={styles.footerText}>
-          {signup ? "Already Have an Account?" : "Don't Have Account?"}
-          <Text style={styles.signup}> {signup ? "Log In" : "Sign Up"}</Text>
-        </Text>
-      </Pressable>
+            style={styles.input}
+            placeholder='PASSWORD'
+            secureTextEntry
+            value={password}
+            onChangeText={setPassword}
+            autoCorrect={false}
+            autoCapitalize='none'
+            placeholderTextColor='#FF1084'
+          />
+        </View>
+        <View style={styles.buttonView}>
 
-    </SafeAreaView>
+          {signup ? <Pressable
+            style={[styles.button, { backgroundColor: 'black' }]}
+            onPress={handleSignup}
+          >
+            <Text style={[styles.buttonText, { color: 'white' }]} >Sign up</Text>
+          </Pressable> : <Pressable
+            style={[styles.button, { backgroundColor: 'black' }]}
+            onPress={handleLogin}
+          >
+            <Text style={[styles.buttonText, { color: 'white' }]} >LOGIN</Text>
+          </Pressable>}
+
+        </View>
+        <Pressable onPress={() => setSignup(!signup)}>
+          <Text style={styles.footerText}>
+            {signup ? "Already Have an Account?" : "Don't Have Account?"}
+            <Text style={styles.signup}> {signup ? "Log In" : "Sign Up"}</Text>
+          </Text>
+        </Pressable>
+
+        {/* </LinearGradient> */}
+
+      </SafeAreaView>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
+    flex: 1,
     paddingTop: 150,
-    backgroundColor: "white",
+  },
+  innerContainer: {
+    alignItems: "center",
+    backgroundColor: "transparent",
     flex: 1
   },
-  image: {
-    height: 80,
-    width: 80
+  background: {
+    flex: 1,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
   },
+
   title: {
     fontSize: 30,
     fontWeight: "bold",
