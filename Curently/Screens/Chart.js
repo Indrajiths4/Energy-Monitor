@@ -1,5 +1,5 @@
 import { ref, onValue } from 'firebase/database';
-import database from '../firebaseConfig';
+import { database }from '../firebaseConfig';
 import React, { useEffect, useState } from 'react';
 import { View, Dimensions, StyleSheet } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';

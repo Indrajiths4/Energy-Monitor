@@ -21,6 +21,7 @@ const Login = () => {
         // ...
       })
       .catch((error) => {
+        // alert('Incorrect Credentials');
         const errorCode = error.code;
         const errorMessage = error.message;
       });
@@ -78,7 +79,7 @@ const Login = () => {
         >
           <Text style={[styles.buttonText, { color: 'white' }]} >Sign up</Text>
         </Pressable> : <Pressable
-          style={[styles.button, { backgroundColor: '#FF5767' }]}
+          style={[styles.button, { backgroundColor: 'black' }]}
           onPress={handleLogin}
         >
           <Text style={[styles.buttonText, { color: 'white' }]} >LOGIN</Text>
