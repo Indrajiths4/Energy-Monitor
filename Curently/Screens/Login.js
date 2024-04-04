@@ -46,10 +46,10 @@ const Login = () => {
   }
 
   return (
-    <LinearGradient colors={['#FF1084', '#8C52FF']} style={styles.container}>
+    <LinearGradient colors={['#FFA448', '#FF0488']} style={styles.container}>
       <SafeAreaView style={styles.container}>
 
-        
+
         {signup ? <Text style={styles.title}>Sign up</Text> : <Text style={styles.title}>Login</Text>}
         <View style={styles.inputView}>
           <TextInput
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     right: 0,
     top: 0,
   },
-  
+
   title: {
     fontSize: 30,
     fontWeight: "bold",
