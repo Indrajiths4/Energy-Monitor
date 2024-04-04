@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { ref, onValue } from 'firebase/database';
-import database from '../firebaseConfig';
+import {app, database , firestore } from '../firebaseConfig';
 import Navbar from './Navbar';
 import { LineChart } from 'react-native-svg-charts';
 import Chart from './Chart';
+import { collection, addDoc } from 'firebase/firestore';
 
 const HomeScreen = () => {
     const [currentValue, setCurrentValue] = useState('');
-    
+    const collectionRef = collection(firestore, 'values')
 
     useEffect(() => {
         const userDataRef = ref(database, '/UsersData/OUP0gXmVjCcD4p3NJNaudwQs7Er1');
@@ -16,8 +17,8 @@ const HomeScreen = () => {
         const unsubscribe = onValue(userDataRef, (snapshot) => {
             const data = snapshot.val();
             if (data) {
-                setCurrentValue(data.current);
-                
+                setCurrentValue(data.current); 
+                addDataToFirestore(data);  
             }
         });
 
@@ -26,6 +27,18 @@ const HomeScreen = () => {
         };
     }, []);
 
+    const addDataToFirestore = async (data) => {
+        try {
+            const docRef = await addDoc(collectionRef, {
+                current: data.current,
+                energy: data.KWH, // Assuming energy data is retrieved from Realtime Database
+                power: data.power, // Assuming power data is retrieved from Realtime Database
+            });
+            console.log('Document written with ID: ', docRef.id);
+        } catch (error) {
+            console.error('Error adding document: ', error);
+        }
+    };
 
     return (
         <View style={styles.container}>
