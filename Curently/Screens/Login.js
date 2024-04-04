@@ -21,6 +21,7 @@ const Login = () => {
         // ...
       })
       .catch((error) => {
+        // alert('Incorrect Credentials');
         const errorCode = error.code;
         const errorMessage = error.message;
       });
