@@ -3,7 +3,7 @@ import { Alert, Button, Image, Pressable, SafeAreaView, StyleSheet, Switch, Text
 import { useNavigation } from '@react-navigation/native';
 const logo = require("../assets/Group 2666.png");
 import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword } from "firebase/auth";
-import LinearGradient from 'react-native-linear-gradient';
+
 
 const Login = () => {
   const auth = getAuth();

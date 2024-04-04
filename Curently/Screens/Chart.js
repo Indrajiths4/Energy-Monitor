@@ -6,8 +6,7 @@ import { LineChart } from 'react-native-chart-kit';
 
 const Chart = () => {
     const [newdata, setNewData] = useState([]);
-    const [timestamps, setTimestamps] = useState([]);
-    const [latestTime, setLatestTime] = useState('');
+
 
     useEffect(() => {
         const userDataRef = ref(database, '/UsersData/OUP0gXmVjCcD4p3NJNaudwQs7Er1');
@@ -24,16 +23,7 @@ const Chart = () => {
                     return newData;
                 });
 
-                // Update timestamps
-                const currentTime = new Date().toLocaleString('en-US', {
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: true
-                });
-                setTimestamps((prevTimestamps) => [...prevTimestamps, currentTime]);
-
-                // Update latest time
-                setLatestTime(currentTime);
+           
             }
         });
 
@@ -47,7 +37,7 @@ const Chart = () => {
             <View style={styles.chartCard}>
                 <LineChart
                     data={{
-                        labels: [...timestamps, latestTime],
+                        labels: ['Jan','Feb','Mar','Apr','May','Jun'],
                         datasets: [
                             {
                                 data: newdata,
