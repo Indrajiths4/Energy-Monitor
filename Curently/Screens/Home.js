@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { ref, onValue } from 'firebase/database';
 import {app, database , firestore } from '../firebaseConfig';
 import Navbar from './Navbar';
-import { LineChart } from 'react-native-svg-charts';
 import Chart from './Chart';
 import { collection, addDoc } from 'firebase/firestore';
 
